@@ -1,0 +1,77 @@
+/* Issue Category listing in project settings */
+tr.issue_category.idnt td.name span {background: url(/images/bullet_arrow_right.png) no-repeat 0 50%; padding-left: 16px;}
+tr.issue_category.idnt-1 td.name {padding-left: 0.5em;}
+tr.issue_category.idnt-2 td.name {padding-left: 2em;}
+tr.issue_category.idnt-3 td.name {padding-left: 3.5em;}
+tr.issue_category.idnt-4 td.name {padding-left: 5em;}
+tr.issue_category.idnt-5 td.name {padding-left: 6.5em;}
+tr.issue_category.idnt-6 td.name {padding-left: 8em;}
+tr.issue_category.idnt-7 td.name {padding-left: 9.5em;}
+tr.issue_category.idnt-8 td.name {padding-left: 11em;}
+tr.issue_category.idnt-9 td.name {padding-left: 12.5em;}
+
+/* Category listing in issue view */
+td.category ul#issue_category_tree,
+td.category ul#issue_category_tree li ul
+{
+	list-style: none;
+	
+	text-align: left;
+
+	margin: 0px;
+	padding-left: 0px;
+}
+
+td.category ul#issue_category_tree
+{
+	margin: 0px auto;
+}
+
+td.category ul#issue_category_tree li ul
+{
+	padding-left: 1em;
+}
+
+td.category ul#issue_category_tree li span,
+td.category ul#issue_category_tree li ul li span
+{
+	color: #aaa;
+}
+
+td.category ul#issue_category_tree li ul li span
+{
+	background-image: url(/images/bullet_arrow_right.png);
+	background-position: 0 50%;
+	background-repeat: no-repeat;
+
+	padding-left: 16px;
+}
+
+td.category ul#issue_category_tree li ul li span.issue_category
+{
+	color: black;
+}
+
+/* Journal History */
+span.issue_category_tree span
+{
+	background-image: url(/images/bullet_arrow_right.png);
+	background-position: 0 50%;
+	background-repeat: no-repeat;
+
+	color: #aaa;
+
+	padding-left: 16px;
+}
+
+span.issue_category_tree span.parent:first-child
+{
+	background-image: none;
+	
+	padding-left: 0px;
+}
+
+span.issue_category_tree span.issue_category
+{
+	color: black;
+}
