@@ -15,22 +15,22 @@ Add a category as you normally would.  There will be a new dropdown labeled "Chi
 
 **NOTE:** _If you are editing an existing category, since it cannot be a child of itself, that option will be disabled in the "Child category of" dropdown._
 
-!(docs/example-dropdown.png)
+![Dropdown screenshot](https://github.com/brett-patterson-mss/redmine_category_tree/raw/master/docs/example-dropdown.png)
 
 ### Issues List
 
 If the category module is selected for display, it will display the full category tree instead of just the selected category for those that are children.
 
-!(docs/example-issue-listing.png)
+![Issue list screenshot](https://github.com/brett-patterson-mss/redmine_category_tree/raw/master/docs/example-issue-listing.png)
 
 ### Tracking Category Changes
 
 Changes to categories are tracked and will show up in the history as the full tree.
 
-!(docs/example-category-change-history.png)
+![Issue category change screenshot](https://github.com/brett-patterson-mss/redmine_category_tree/raw/master/docs/example-category-change-history.png)
 
 ### Managing Categories
 
 The category listing will show in a tree format similar to the projects listing in the admin panel.
 
-!(docs/example-category-listing.png)
+![Category list screenshot](https://github.com/brett-patterson-mss/redmine_category_tree/raw/master/docs/example-category-listing.png)
