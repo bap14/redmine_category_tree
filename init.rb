@@ -5,6 +5,8 @@ Redmine::Plugin.register :redmine_category_tree do
 	author 'Brett Patterson'
 	description 'Adds ability for categories to have "children"'
 	version '0.0.1'
+	
+	permission :move_category, :issue_categories => :move_category
 
 	requires_redmine :version_or_higher => '2.0.3'
 end
@@ -27,10 +29,15 @@ ActionDispatch::Callbacks.to_prepare do
 		IssueCategoriesController.send(:include, RedmineCategoryTree::Patches::IssueCategoriesControllerPatch)
 	end
 
-	require_dependency 'projects_controller'
-	unless ProjectsController.included_modules.include?(RedmineCategoryTree::Patches::ProjectsControllerPatch)
-		ProjectsController.send(:include, RedmineCategoryTree::Patches::ProjectsControllerPatch)
+	require_dependency 'project'
+	unless Project.included_modules.include?(RedmineCategoryTree::Patches::ProjectPatch)
+		Project.send(:include, RedmineCategoryTree::Patches::ProjectPatch)
 	end
+	
+	require_dependency 'reports_controller'
+  unless ReportsController.included_modules.include?(RedmineCategoryTree::Patches::ReportsControllerPatch)
+    ReportsController.send(:include, RedmineCategoryTree::Patches::ReportsControllerPatch)
+  end
 
 	require_dependency 'queries_helper'
 	unless QueriesHelper.included_modules.include?(RedmineCategoryTree::Patches::QueriesHelperPatch)

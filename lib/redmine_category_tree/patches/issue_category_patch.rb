@@ -10,7 +10,7 @@ module RedmineCategoryTree
 
 					safe_attributes 'parent_id'
 
-					acts_as_nested_set :order => "name", :dependent => :destroy
+					acts_as_nested_set :order => "name", :dependent => :destroy, :scope => 'project_id'
 				end
 			end
 

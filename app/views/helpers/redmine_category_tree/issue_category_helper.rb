@@ -70,5 +70,9 @@ module RedmineCategoryTree
       
       s.html_safe
     end
+    
+    def move_category_path(category, direction)
+      url_for({ :controller => 'issue_categories', :action => 'move_category', :id => category.id, :direction => direction })
+    end
 	end
 end

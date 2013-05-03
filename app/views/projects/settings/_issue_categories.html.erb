@@ -4,15 +4,37 @@
     <th><%= l(:label_issue_category) %></th>
     <th><%= l(:field_assigned_to) %></th>
     <th></th>
+    <th></th>
+    <th></th>
+    <th></th>
+    <th></th>
   </tr></thead>
   <tbody>
-<% for category in @project.issue_categories %>
-<% end %>
 <% issue_category_tree(@project.issue_categories) do |category, level| %>
-  <% #unless category.new_record? %>
+  <% unless category.new_record? %>
   <tr class="issue_category <%= cycle 'odd', 'even' %> <%= level > 0 ? "idnt idnt-#{level}" : nil %>">
     <td class="name"><span><%=h(category.name) %></span></td>
     <td><%=h(category.assigned_to.name) if category.assigned_to %></td>
+    <td>
+    	<% if ( category.root? && category.left_sibling ) %>
+    	<%= link_to l(:issue_category_move_top), move_category_path(category, 'top'), :class => 'icon icon-move-top' %>
+    	<% end %>
+    </td>
+    <td>
+    	<% if category.left_sibling %>
+    	<%= link_to l(:issue_category_move_up), move_category_path(category, 'up'), :class => 'icon icon-move-up' %>
+    	<% end %>
+    </td>
+    <td>
+    	<% if category.right_sibling %>
+    	<%= link_to l(:issue_category_move_down), move_category_path(category, 'down'), :class => 'icon icon-move-down' %>
+    	<% end %>
+    </td>
+    <td>
+    	<% if ( category.root? && category.right_sibling ) %>
+    	<%= link_to l(:issue_category_move_bottom), move_category_path(category, 'bottom'), :class => 'icon icon-move-bottom' %>
+    	<% end %>
+    </td>
     <td class="buttons">
     	<% if User.current.allowed_to?(:manage_categories, @project) %>
         <%= link_to l(:button_edit), edit_issue_category_path(category), :class => 'icon icon-edit' %>
@@ -20,7 +42,7 @@
 		  <% end %>
     </td>
   </tr>
-  <% #end %>
+  <% end %>
 <% end %>
     </tbody>
 </table>

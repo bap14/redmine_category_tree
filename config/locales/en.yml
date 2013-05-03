@@ -1,2 +1,8 @@
 en:
   label_issue_category_parent_id: "Child category of"
+  issue_category_move_top: "Move to Top"
+  issue_category_move_up: "Move Up"
+  issue_category_move_down: "Move Down"
+  issue_category_move_bottom: "Move to Bottom"
+  issue_category_successful_move: "Category moved successfully"
+  issue_category_not_found: "Failed to load issue category"

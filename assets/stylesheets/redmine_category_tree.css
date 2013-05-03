@@ -1,4 +1,4 @@
-/* Issue Category listing in project settings */
+/* Issue Category listing in project settings & Issue summary */
 tr.issue_category.idnt td.name span {background: url(/images/bullet_arrow_right.png) no-repeat 0 50%; padding-left: 16px;}
 tr.issue_category.idnt-1 td.name {padding-left: 0.5em;}
 tr.issue_category.idnt-2 td.name {padding-left: 2em;}
@@ -9,6 +9,26 @@ tr.issue_category.idnt-6 td.name {padding-left: 8em;}
 tr.issue_category.idnt-7 td.name {padding-left: 9.5em;}
 tr.issue_category.idnt-8 td.name {padding-left: 11em;}
 tr.issue_category.idnt-9 td.name {padding-left: 12.5em;}
+
+tr.issue_category a.icon-move-top
+{
+	background-image: url(/images/2uparrow.png);
+}
+
+tr.issue_category a.icon-move-up
+{
+	background-image: url(/images/1uparrow.png);
+}
+
+tr.issue_category a.icon-move-down
+{
+	background-image: url(/images/1downarrow.png);
+}
+
+tr.issue_category a.icon-move-bottom
+{
+	background-image: url(/images/2downarrow.png);
+}
 
 /* Category listing in issue view */
 td.category ul#issue_category_tree,
