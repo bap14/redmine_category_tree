@@ -1,4 +1,4 @@
-# Redmine Category Tree
+# ![icon](https://github.com/brett-patterson-mss/redmine_category_tree/raw/master/docs/icon.png) Redmine Category Tree
 
 This module allows for the category lists within projects to act as trees instead of a single flat list.  This uses the awesome_nested_set contained within Redmine to maintain the tree structure.
 
