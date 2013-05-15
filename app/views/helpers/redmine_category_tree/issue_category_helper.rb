@@ -34,6 +34,7 @@ module RedmineCategoryTree
 		end
 
 		def render_issue_category_with_tree(category)
+      return '' if category.nil?
 			s = ''
 			ancestors = category.root? ? [] : category.ancestors.all
 			if ancestors.any?
