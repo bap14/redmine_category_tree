@@ -61,3 +61,13 @@ This will move the selected category down one slot so it will now show below the
 #### Move to Bottom
 
 This will move the selected category to the bottom of the list for that project
+
+## Revision History
+
+## 0.0.2
+
+Merged fix from KappaNossi to fix 500 errors on pages
+
+## 0.0.1
+
+Initial release
