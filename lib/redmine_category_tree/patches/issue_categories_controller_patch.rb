@@ -11,6 +11,8 @@ module RedmineCategoryTree
 					unloadable
 
 					helper RedmineCategoryTree::IssueCategoryHelper
+
+          alias_method_chain :new, :category_tree
 				end
 			end
 
@@ -18,6 +20,16 @@ module RedmineCategoryTree
 			end
 
 			module InstanceMethods
+        def new_with_category_tree
+          @category = IssueCategory.new(:project_id => @project.id)
+          @category.safe_attributes = params[:issue_category]
+
+          respond_to do |format|
+            format.html
+            format.js
+          end
+        end
+
 			  def move_category
 			    categoryId = params[:id]
 			    direction = params[:direction]

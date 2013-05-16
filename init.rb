@@ -32,7 +32,12 @@ ActionDispatch::Callbacks.to_prepare do
 	require_dependency 'project'
 	unless Project.included_modules.include?(RedmineCategoryTree::Patches::ProjectPatch)
 		Project.send(:include, RedmineCategoryTree::Patches::ProjectPatch)
-	end
+  end
+
+  require_dependency 'projects_controller'
+  unless ProjectsController.included_modules.include?(RedmineCategoryTree::Patches::ProjectsControllerPatch)
+    ProjectsController.send(:include, RedmineCategoryTree::Patches::ProjectsControllerPatch)
+  end
 	
 	require_dependency 'reports_controller'
   unless ReportsController.included_modules.include?(RedmineCategoryTree::Patches::ReportsControllerPatch)
