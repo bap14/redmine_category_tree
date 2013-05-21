@@ -64,6 +64,11 @@ This will move the selected category to the bottom of the list for that project
 
 # Revision History
 
+## 0.0.2
+
+* Merging KappaNossi's fix for 500 errors
+* Fixing other 500 errors
+
 ## 0.0.1
 
 Initial release of plugin
