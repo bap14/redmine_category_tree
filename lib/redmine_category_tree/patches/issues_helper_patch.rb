@@ -19,6 +19,9 @@ module RedmineCategoryTree
 
 			module InstanceMethods
 				def find_name_by_reflection_with_issue_categories(field, id)
+          unless id.present?
+            return nil
+          end
 					if field == 'category'
 					  category = IssueCategory.find(id)
 					  return render_issue_category_with_tree_inline(category)
