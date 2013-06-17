@@ -17,8 +17,8 @@ module RedmineCategoryTree
 			module ClassMethods
 				def issue_category_tree(issue_categories, &block)
 					ancestors = []
-
-					issue_categories.sort_by(&:lft).each do |category|
+					
+					issue_categories.sort_by {|c| c[:lft].to_i }.each do |category|
 						while (ancestors.any? && !category.is_descendant_of?(ancestors.last))
 							ancestors.pop
 						end

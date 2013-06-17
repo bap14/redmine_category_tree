@@ -64,6 +64,11 @@ This will move the selected category to the bottom of the list for that project
 
 # Revision History
 
+## 0.0.3
+
+* Adjusting default value(s) on nested set columns
+* Fixing issue when adding new category of a "Comaprison of Fixnum with nil failed" error
+
 ## 0.0.2
 
 * Merging KappaNossi's fix for 500 errors
