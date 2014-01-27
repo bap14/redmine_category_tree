@@ -1,0 +1,8 @@
+ru:
+  label_issue_category_parent_id: "Родительская категория"
+  issue_category_move_top: "Переместить вверх"
+  issue_category_move_up: "Поднять"
+  issue_category_move_down: "Опустить"
+  issue_category_move_bottom: "Переместить вниз"
+  issue_category_successful_move: "Категория успешно перемещена"
+  issue_category_not_found: "Невозможно загрузить категории"
