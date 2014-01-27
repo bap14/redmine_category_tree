@@ -64,6 +64,12 @@ This will move the selected category to the bottom of the list for that project
 
 # Revision History
 
+## 0.0.4
+
+* Add Russian translation of plugin (#7).  Thanks to AndreyBronin for the translation.
+* Fix copying project with sub-categories causes error (#9)
+* Fix IssueHelper patch not allowing for deletion of category with tickets assigned to it (#8)
+
 ## 0.0.3
 
 * Adjusting default value(s) on nested set columns
