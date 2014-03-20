@@ -32,6 +32,70 @@ module RedmineCategoryTree
     def issue_category_tree(issue_categories, &block)
       IssueCategory.issue_category_tree(issue_categories, &block)
     end
+    
+    def render_issue_category_tree_list(categories, includeOuterUL=false, &block)
+      categories = issue_category_tree(categories) { |cat, level| nil }
+      return '' if categories.size == 0
+      
+      output = ''
+      output << '<ul>' if includeOuterUL
+      output << '<li>'
+      
+      path = [nil]
+      
+      categories.each_with_index do |cat, idx|
+        if cat.parent_id != path.last
+          if path.include?(cat.parent_id)
+            while path.last != cat.parent_id
+              path.pop
+              output << '</li></ul>'
+            end
+            output << '</li><li>'
+          else
+            path << cat.parent_id
+            output << '<ul><li>'
+          end
+        elsif idx != 0
+          output << '</li><li>'  
+        end
+        output << capture(cat, path.size - 1, &block)
+      end
+      
+      output << '</li><ul>' * (path.length - 1)
+      output << '</ul>' if includeOuterUL
+      output.html_safe
+    end
+    
+    def render_issue_category_tree_context_menu_list(categories, includeOuterUL=false, &block)
+      categories = issue_category_tree(categories) { |cat, level| nil }
+      return '' if categories.size == 0
+      
+      output = ''
+      output << '<ul>' if includeOuterUL
+      
+      path = [nil]
+      
+      categories.each_with_index do |cat, idx|
+        if cat.parent_id != path.last
+          if path.include?(cat.parent_id)
+            while path.last != cat.parent_id
+              path.pop
+              output << '</ul></li>'
+            end
+          else
+            path << cat.parent_id
+            output << '<li class="category-tree-nofx"><ul>'
+          end
+        end
+        output << '<li>'
+        output << capture(cat, path.size - 1, &block)
+        output << '</li>'
+      end
+      
+      output << '</ul></li>' * (path.length - 1)
+      output << '</ul>' if includeOuterUL
+      output.html_safe
+    end
 
     def render_issue_category_with_tree(category)
       s = ''

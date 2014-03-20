@@ -64,6 +64,10 @@ This will move the selected category to the bottom of the list for that project
 
 # Revision History
 
+## 0.0.5
+
+* Add support for context menus
+
 ## 0.0.4
 
 * Add Russian translation of plugin (#7).  Thanks to AndreyBronin for the translation.

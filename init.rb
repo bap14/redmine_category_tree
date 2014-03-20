@@ -48,4 +48,9 @@ ActionDispatch::Callbacks.to_prepare do
 	unless IssuesHelper.included_modules.include?(RedmineCategoryTree::Patches::IssuesHelperPatch)
 		IssuesHelper.send(:include, RedmineCategoryTree::Patches::IssuesHelperPatch)
 	end
+	
+	require_dependency 'context_menus_controller'
+  unless ContextMenusController.included_modules.include?(RedmineCategoryTree::Patches::ContextMenusControllerPatch)
+    ContextMenusController.send(:include, RedmineCategoryTree::Patches::ContextMenusControllerPatch)
+  end
 end

@@ -95,3 +95,29 @@ span.issue_category_tree span.issue_category
 {
 	color: black;
 }
+
+/* Context Menu */
+div#context-menu li.folder ul.issue_category_tree li.category-tree-nofx,
+div#context-menu li.folder ul.issue_category_tree li.category-tree-nofx:hover
+{
+	background: transparent;
+	border: none;
+	
+	padding: 0px;
+}
+
+div#context-menu li.folder ul.issue_category_tree li.category-tree-nofx > ul
+{
+	background: transparent;
+	border: none;
+	
+	left: auto;
+	top: auto;
+	
+	display: block;
+	position: relative;
+	
+	padding-left: 20px;
+	
+	width: 130px;
+}
