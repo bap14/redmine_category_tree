@@ -4,7 +4,7 @@ Redmine::Plugin.register :redmine_category_tree do
 	name 'Redmine Category Tree'
 	author 'Brett Patterson'
 	description 'Adds ability for categories to have "children"'
-	version '0.0.4'
+	version '0.0.5'
 	
 	permission :move_category, :issue_categories => :move_category
 
@@ -35,9 +35,9 @@ ActionDispatch::Callbacks.to_prepare do
 	end
 	
 	require_dependency 'reports_controller'
-  unless ReportsController.included_modules.include?(RedmineCategoryTree::Patches::ReportsControllerPatch)
-    ReportsController.send(:include, RedmineCategoryTree::Patches::ReportsControllerPatch)
-  end
+	unless ReportsController.included_modules.include?(RedmineCategoryTree::Patches::ReportsControllerPatch)
+		ReportsController.send(:include, RedmineCategoryTree::Patches::ReportsControllerPatch)
+	end
 
 	require_dependency 'queries_helper'
 	unless QueriesHelper.included_modules.include?(RedmineCategoryTree::Patches::QueriesHelperPatch)
@@ -50,7 +50,7 @@ ActionDispatch::Callbacks.to_prepare do
 	end
 	
 	require_dependency 'context_menus_controller'
-  unless ContextMenusController.included_modules.include?(RedmineCategoryTree::Patches::ContextMenusControllerPatch)
-    ContextMenusController.send(:include, RedmineCategoryTree::Patches::ContextMenusControllerPatch)
-  end
+	unless ContextMenusController.included_modules.include?(RedmineCategoryTree::Patches::ContextMenusControllerPatch)
+		ContextMenusController.send(:include, RedmineCategoryTree::Patches::ContextMenusControllerPatch)
+	end
 end
