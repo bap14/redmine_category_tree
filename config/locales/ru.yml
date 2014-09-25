@@ -6,3 +6,7 @@ ru:
   issue_category_move_bottom: "Переместить вниз"
   issue_category_successful_move: "Категория успешно перемещена"
   issue_category_not_found: "Невозможно загрузить категории"
+  plugin_notice_successful_archived: Category archived successfully.
+  plugin_notice_successful_unarchived: Category unarchived successfully.
+  plugin_delete_button_note: This will also remove the category name from old tickets!
+  

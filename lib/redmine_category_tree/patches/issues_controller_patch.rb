@@ -1,3 +1,4 @@
+require_dependency 'issues_controller'
 require File.dirname(__FILE__) + '/../../../app/views/helpers/redmine_category_tree/issue_category_helper.rb'
 
 module RedmineCategoryTree
@@ -22,3 +23,5 @@ module RedmineCategoryTree
 		end
 	end
 end
+
+IssuesController.send(:include, RedmineCategoryTree::Patches::IssuesControllerPatch)

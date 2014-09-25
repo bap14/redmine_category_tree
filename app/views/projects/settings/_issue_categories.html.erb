@@ -38,6 +38,8 @@
     <td class="buttons">
     	<% if User.current.allowed_to?(:manage_categories, @project) %>
         <%= link_to l(:button_edit), edit_issue_category_path(category), :class => 'icon icon-edit' %>
+		<%= link_to(l(:button_archive), archive_issue_category_path(category), :method => :post, :class => 'icon icon-lock') unless category.archived? %>
+        <%= link_to(l(:button_unarchive), unarchive_issue_category_path(category), :method => :post, :class => 'icon icon-lock') if category.archived? %>
         <%= delete_link issue_category_path(category) %>
 		  <% end %>
     </td>
