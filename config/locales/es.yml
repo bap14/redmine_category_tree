@@ -1,0 +1,8 @@
+es:
+  label_issue_category_parent_id: "Categoria hija de"
+  issue_category_move_top: "Mover al inicio"
+  issue_category_move_up: "Arriba"
+  issue_category_move_down: "Abajo"
+  issue_category_move_bottom: "Mover al final"
+  issue_category_successful_move: "Categoria movida satisfactoriamente"
+  issue_category_not_found: "No se pudo cargar la categoria de la atividad"
