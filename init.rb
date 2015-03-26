@@ -8,7 +8,7 @@ Redmine::Plugin.register :redmine_category_tree do
 	
 	permission :move_category, :issue_categories => :move_category
 
-	requires_redmine :version_or_higher => '2.0.3'
+	requires_redmine :version_or_higher => '3.0.1'
 end
 
 require 'redmine_category_tree/hooks/redmine_category_tree_hooks'
