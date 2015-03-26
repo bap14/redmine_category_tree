@@ -64,6 +64,10 @@ This will move the selected category to the bottom of the list for that project
 
 # Revision History
 
+## 0.0.6
+
+* Add awesome_nested_set gem dependency (for use with Redmine 3.x)
+
 ## 0.0.5
 
 * Add support for context menus

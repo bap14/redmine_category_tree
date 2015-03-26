@@ -8,7 +8,7 @@ module RedmineCategoryTree
         base.class_eval do
           unloadable
 
-          has_many :issue_categories, :dependent => :delete_all, :order => "#{IssueCategory.table_name}.lft"
+          has_many :issue_categories, lambda {order("#{IssueCategory.table_name}.lft")}, :dependent => :delete_all
           
           alias_method_chain :copy_issue_categories, :subcategories
         end

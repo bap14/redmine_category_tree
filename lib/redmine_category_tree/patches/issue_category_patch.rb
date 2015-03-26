@@ -3,7 +3,7 @@ module RedmineCategoryTree
 		module IssueCategoryPatch
 			def self.included(base) # :nodoc:
 				base.extend(ClassMethods)
-				base.send(:include, InstanceMethods)
+				base.send :include, InstanceMethods
 
 				base.class_eval do
 					unloadable
