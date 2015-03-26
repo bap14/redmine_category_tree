@@ -1,12 +1,12 @@
 <% if @statuses.empty? or rows.empty? %>
     <p><i><%=l(:label_no_data)%></i></p>
 <% else %>
-<table class="list">
+<table class="list issue-report">
 <thead><tr>
-<th style="width:25%"></th>
-<th align="center" style="width:25%"><%=l(:label_open_issues_plural)%></th>
-<th align="center" style="width:25%"><%=l(:label_closed_issues_plural)%></th>
-<th align="center" style="width:25%"><%=l(:label_total)%></th>
+<th></th>
+<th><%=l(:label_open_issues_plural)%></th>
+<th><%=l(:label_closed_issues_plural)%></th>
+<th><%=l(:label_total)%></th>
 </tr></thead>
 <tbody>
 <% for row in rows %>
@@ -16,9 +16,7 @@
 		rowClass = "issue_category"
 		categoryTree = row.self_and_ancestors()
 		issue_category_tree(categoryTree) { | rowName, level |
-		
 			row.name = rowName
-			
 			if level > 0
 				rowClass += " idnt idnt-#{level}"
 			end
@@ -26,35 +24,13 @@
 	end
 %>
 <tr class="<%= cycle("odd", "even") %> <%= rowClass %>">
-  <td<% if field_name == "category_id" %> class="name"<% end %>>
-  	<% if field_name == "category_id" %><span><%end %>
-  	<%= link_to h(row.name), :controller => 'issues', :action => 'index', :project_id => ((row.is_a?(Project) ? row : @project)),
-                                                :set_filter => 1,
-                                                :subproject_id => '!*',
-                                                "#{field_name}" => row.id %>
-  <% if field_name == "category_id" %></span><%end %>
-  </td>
-  <td align="center"><%= aggregate_link data, { field_name => row.id, "closed" => 0 },
-                                                :controller => 'issues', :action => 'index', :project_id => ((row.is_a?(Project) ? row : @project)),
-                                                :set_filter => 1,
-                                                :subproject_id => '!*',
-                                                "#{field_name}" => row.id,
-                                                "status_id" => "o" %></td>
-  <td align="center"><%= aggregate_link data, { field_name => row.id, "closed" => 1 },
-                                                :controller => 'issues', :action => 'index', :project_id => ((row.is_a?(Project) ? row : @project)),
-                                                :set_filter => 1,
-                                                :subproject_id => '!*',
-                                                "#{field_name}" => row.id,
-                                                "status_id" => "c" %></td>
-  <td align="center"><%= aggregate_link data, { field_name => row.id },
-                                                :controller => 'issues', :action => 'index', :project_id => ((row.is_a?(Project) ? row : @project)),
-                                                :set_filter => 1,
-                                                :subproject_id => '!*',
-                                                "#{field_name}" => row.id,
-                                                "status_id" => "*" %></td>
+  <td class="name"><% if field_name == "category_id" %><span><% end %><%= link_to h(row.name), aggregate_path(@project, field_name, row) %><% if field_name == "category_id" %></span><% end %></td>
+  <td><%= aggregate_link data, { field_name => row.id, "closed" => 0 }, aggregate_path(@project, field_name, row, :status_id => "o") %></td>
+  <td><%= aggregate_link data, { field_name => row.id, "closed" => 1 }, aggregate_path(@project, field_name, row, :status_id => "c") %></td>
+  <td><%= aggregate_link data, { field_name => row.id }, aggregate_path(@project, field_name, row, :status_id => "*") %></td>
 </tr>
 <% end %>
 </tbody>
 </table>
-<% end
-  reset_cycle %>
+<% end %>
+<% reset_cycle %>
