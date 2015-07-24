@@ -1,0 +1,8 @@
+tr:
+  label_issue_category_parent_id: "Üst kategori"
+  issue_category_move_top: "En Üste Taşı"
+  issue_category_move_up: "Yukarı Taşı"
+  issue_category_move_down: "Aşağı Taşı"
+  issue_category_move_bottom: "En Alta Taşı"
+  issue_category_successful_move: "Kategori taşındı"
+  issue_category_not_found: "İş kategorisi yüklenemedi"
