@@ -1,4 +1,5 @@
-en:
+# English strings go here for Rails i18n
+de:
   label_issue_category_parent_id: "Child category of"
   issue_category_move_top: "Move to Top"
   issue_category_move_up: "Move Up"
@@ -6,7 +7,6 @@ en:
   issue_category_move_bottom: "Move to Bottom"
   issue_category_successful_move: "Category moved successfully"
   issue_category_not_found: "Failed to load issue category"
-  plugin_notice_successful_archived: Category archived successfully.
-  plugin_notice_successful_unarchived: Category unarchived successfully.
-  plugin_delete_button_note: This will also remove the category name from old tickets!
-  
+  plugin_notice_successful_archived: Kategorie wurde archiviert.
+  plugin_notice_successful_unarchived: Kategorie wurde entarchiviert.
+  plugin_delete_button_note: Dies wird den Kategorie-Namen auch aus alten Tickets entfernen!

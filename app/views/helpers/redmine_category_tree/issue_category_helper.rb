@@ -2,7 +2,7 @@ module RedmineCategoryTree
   module IssueCategoryHelper
     def issue_category_tree_options_for_select(issue_categories, options={})
       s = ''
-      issue_category_tree(issue_categories) do |category, level|
+      issue_category_tree(issue_categories, true) do |category, level|
         if category.nil? || category.id.nil?
           next
         end
@@ -22,15 +22,61 @@ module RedmineCategoryTree
         if !options[:current].nil? && options[:current].id == category.id
           tag_options[:disabled] = 'disabled'
         end
-
-        tag_options.merge!(yield(category)) if block_given?
+		
+        tag_options.merge!(yield(category)) if block_given?		
         s << content_tag('option', name_prefix + h(category), tag_options)
+				
       end
       s.html_safe
     end
 
-    def issue_category_tree(issue_categories, &block)
-      IssueCategory.issue_category_tree(issue_categories, &block)
+    def issue_category_tree(issue_categories, ignore_disabled = false, &block)
+	
+	  if ignore_disabled
+	  
+		cats   = []
+		levels = []
+	  
+	    cur_disabled_levels = []
+	    IssueCategory.issue_category_tree(issue_categories) do |category, level|
+		
+		  # Child levels no longer matter if we moved up
+		  while !cur_disabled_levels.empty? && cur_disabled_levels.last >= level
+		    cur_disabled_levels.pop
+		  end
+		
+	  	  has_disabled_parent_cat   = !cur_disabled_levels.empty? && cur_disabled_levels.min < level
+		  disabled_at_current_level = !cur_disabled_levels.empty? && cur_disabled_levels.last == level
+		  current_cat_disabled      = category.archived || has_disabled_parent_cat
+		  
+		  # If archived here, current disabled level
+		  if category.archived
+		    cur_disabled_levels.push level
+		  # Pop current level if reached again, but honor setting from parent for this one
+		  elsif disabled_at_current_level
+		    while !cur_disabled_levels.empty? && cur_disabled_levels.last == level
+		      cur_disabled_levels.pop
+		    end
+		  end
+
+		  if !current_cat_disabled
+		    cats.push category
+			levels.push level
+		  end
+		  	  
+		end
+
+        if !cats.nil?
+		  # How to make a normal for loop?? => for(int i = 0; i < cats.size(); ++i) { ... } ???
+		  len = cats.size - 1
+		  (0..len).each do |i|
+		    yield cats[i], levels[i]
+		  end
+		end
+		return cats
+	  else
+	    IssueCategory.issue_category_tree(issue_categories, &block)
+	  end
     end
     
     def render_issue_category_tree_list(categories, includeOuterUL=false, &block)
@@ -67,14 +113,14 @@ module RedmineCategoryTree
     end
     
     def render_issue_category_tree_context_menu_list(categories, includeOuterUL=false, &block)
-      categories = issue_category_tree(categories) { |cat, level| nil }
+      categories = issue_category_tree(categories, true) { |cat, level| nil }
       return '' if categories.size == 0
       
       output = ''
       output << '<ul>' if includeOuterUL
       
       path = [nil]
-      
+	  
       categories.each_with_index do |cat, idx|
         if cat.parent_id != path.last
           if path.include?(cat.parent_id)
