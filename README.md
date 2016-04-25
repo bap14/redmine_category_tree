@@ -11,6 +11,7 @@ This module allows for the category lists within projects to act as trees instea
 
 * Clone the repository
 * Place in <redmine_root>/plugins
+* Compile your assets (to get style changes)
 * Follow normal Redmine plugin installation commands
 
 ## Usage
