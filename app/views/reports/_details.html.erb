@@ -5,7 +5,7 @@
 <thead><tr>
 <th></th>
 <% for status in @statuses %>
-<th><%=h status.name %></th>
+<th><%= status.name %></th>
 <% end %>
 <th><strong><%=l(:label_open_issues_plural)%></strong></th>
 <th><strong><%=l(:label_closed_issues_plural)%></strong></th>

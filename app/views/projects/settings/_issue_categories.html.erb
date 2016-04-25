@@ -13,8 +13,8 @@
 <% issue_category_tree(@project.issue_categories) do |category, level| %>
   <% unless category.new_record? %>
   <tr class="issue_category <%= cycle 'odd', 'even' %> <%= level > 0 ? "idnt idnt-#{level}" : nil %>">
-    <td class="name"><span><%=h(category.name) %></span></td>
-    <td><%=h(category.assigned_to.name) if category.assigned_to %></td>
+    <td class="name"><%= category.name  %></td>
+    <td><%= category.assigned_to.name if category.assigned_to %></td>
     <td>
     	<% if ( category.root? && category.left_sibling ) %>
     	<%= link_to l(:issue_category_move_top), move_category_path(category, 'top'), :class => 'icon icon-move-top' %>

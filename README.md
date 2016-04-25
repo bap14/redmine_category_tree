@@ -52,17 +52,22 @@ This will move the selected category to the top of the list for that project
 
 #### Move Up
 
-This will move the selected category up one slot so it will now show above the category above it.
+This will move the selected category up one slot so it will now show before the category (at the same level) above it.
 
 #### Move Down
 
-This will move the selected category down one slot so it will now show below the category below it.
+This will move the selected category down one slot so it will now show after the category (at the same level) below it.
 
 #### Move to Bottom
 
 This will move the selected category to the bottom of the list for that project
 
 # Revision History
+
+## 0.0.7
+
+* Updated to work with Redmine 3.2.1
+* Clarify a couple items in the readme
 
 ## 0.0.6
 
