@@ -1,5 +1,5 @@
 /* Issue Category listing in project settings & Issue summary */
-tr.issue_category.idnt td.name:before {content: url(/images/bullet_arrow_right.png);}
+tr.issue_category.idnt td.name:before {content: url(/images/bullet_arrow_right.png); padding-left: 0; margin-right: 0.2em;}
 tr.issue_category.idnt-1 td.name {padding-left: 0.5em;}
 tr.issue_category.idnt-2 td.name {padding-left: 2em;}
 tr.issue_category.idnt-3 td.name {padding-left: 3.5em;}
