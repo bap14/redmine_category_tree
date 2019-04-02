@@ -65,6 +65,9 @@ This will move the selected category to the bottom of the list for that project
 
 # Revision History
 
+## 1.0.0
+* Add support for Rails >= 5
+
 ## 0.0.7
 
 * Updated to work with Redmine 3.2.1

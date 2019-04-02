@@ -1,5 +1,5 @@
 /* Issue Category listing in project settings & Issue summary */
-tr.issue_category.idnt td.name:before {content: url(/images/bullet_arrow_right.png); padding-left: 0; margin-right: 0.2em;}
+tr.issue_category.idnt td.name:before {content: url(../images/arrow-right.png); padding-left: 0; margin-right: 0.2em;}
 tr.issue_category.idnt-1 td.name {padding-left: 0.5em;}
 tr.issue_category.idnt-2 td.name {padding-left: 2em;}
 tr.issue_category.idnt-3 td.name {padding-left: 3.5em;}
@@ -12,22 +12,22 @@ tr.issue_category.idnt-9 td.name {padding-left: 12.5em;}
 
 tr.issue_category a.icon-move-top
 {
-	background-image: url(/images/2uparrow.png);
+	background-image: url(../images/2-up-arrow.png);
 }
 
 tr.issue_category a.icon-move-up
 {
-	background-image: url(/images/1uparrow.png);
+	background-image: url(../images/1-up-arrow.png);
 }
 
 tr.issue_category a.icon-move-down
 {
-	background-image: url(/images/1downarrow.png);
+	background-image: url(../images/1-down-arrow.png);
 }
 
 tr.issue_category a.icon-move-bottom
 {
-	background-image: url(/images/2downarrow.png);
+	background-image: url(../images/2-down-arrow.png);
 }
 
 /* Category listing in issue view */
@@ -60,7 +60,7 @@ div.category ul#issue_category_tree li ul li span
 
 div.category ul#issue_category_tree li ul li span
 {
-	background-image: url(/images/bullet_arrow_right.png);
+	background-image: url(../images/arrow-right.png);
 	background-position: 0 50%;
 	background-repeat: no-repeat;
 
@@ -75,7 +75,7 @@ div.category ul#issue_category_tree li ul li span.issue_category
 /* Journal History */
 span.issue_category_tree span
 {
-	background-image: url(/images/bullet_arrow_right.png);
+	background-image: url(../images/arrow-right.png);
 	background-position: 0 50%;
 	background-repeat: no-repeat;
 
