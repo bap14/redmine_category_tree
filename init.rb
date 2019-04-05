@@ -1,5 +1,3 @@
-#require 'redmine'
-
 Redmine::Plugin.register :redmine_category_tree do
 	name 'Redmine Category Tree'
 	author 'Brett Patterson'
@@ -18,6 +16,11 @@ Rails.configuration.to_prepare do
 #((Rails.version > "5")? ActiveSupport::Reloader : ActionDispatch::Callbacks).to_prepare do
 
   ## Helpers first
+	require_dependency 'application_helper'
+	unless ApplicationHelper.included_modules.include?(RedmineCategoryTree::Patches::ApplicationHelperPatch)
+    ApplicationHelper.send(:prepend, RedmineCategoryTree::Patches::ApplicationHelperPatch)
+  end
+
 	require_dependency 'queries_helper'
 	unless QueriesHelper.included_modules.include?(RedmineCategoryTree::Patches::QueriesHelperPatch)
 		QueriesHelper.send(:prepend, RedmineCategoryTree::Patches::QueriesHelperPatch)

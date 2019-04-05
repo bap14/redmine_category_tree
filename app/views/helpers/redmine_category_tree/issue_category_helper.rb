@@ -157,7 +157,7 @@ module RedmineCategoryTree
       s << tag.span(h(category.name), :class => 'issue_category')
       
       if ancestors.any?
-        s = tag.span(s, :class => 'issue_category_tree')
+        s = tag.span(s.html_safe, :class => 'issue_category_tree')
       end
       s.html_safe
     end

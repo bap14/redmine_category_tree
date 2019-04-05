@@ -31,8 +31,8 @@ tr.issue_category a.icon-move-bottom
 }
 
 /* Category listing in issue view */
-div.category ul#issue_category_tree,
-div.category ul#issue_category_tree li ul
+.category ul#issue_category_tree,
+.category ul#issue_category_tree li ul
 {
 	list-style: none;
 	
@@ -42,23 +42,23 @@ div.category ul#issue_category_tree li ul
 	padding-left: 0px;
 }
 
-div.category ul#issue_category_tree
+.category ul#issue_category_tree
 {
 	margin: 0px auto;
 }
 
-div.category ul#issue_category_tree li ul
+.category ul#issue_category_tree li ul
 {
 	padding-left: 1em;
 }
 
-div.category ul#issue_category_tree li span,
-div.category ul#issue_category_tree li ul li span
+.category ul#issue_category_tree li span,
+.category ul#issue_category_tree li ul li span
 {
 	color: #aaa;
 }
 
-div.category ul#issue_category_tree li ul li span
+.category ul#issue_category_tree li ul li span
 {
 	background-image: url(../images/arrow-right.png);
 	background-position: 0 50%;
@@ -67,7 +67,7 @@ div.category ul#issue_category_tree li ul li span
 	padding-left: 16px;
 }
 
-div.category ul#issue_category_tree li ul li span.issue_category
+.category ul#issue_category_tree li ul li span.issue_category
 {
 	color: black;
 }
