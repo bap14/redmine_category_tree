@@ -3,7 +3,6 @@ module RedmineCategoryTree
     module ProjectPatch
       def self.prepended(base) # :nodoc:
         base.class_eval do
-          unloadable
           has_many :issue_categories, lambda {order("#{IssueCategory.table_name}.lft")}, :dependent => :delete_all
         end
       end

@@ -1,5 +1,8 @@
 module RedmineCategoryTree
   module IssueCategoryHelper
+    include ERB::Util
+    include ActionView::Helpers::TagHelper
+
     def issue_category_tree_options_for_select(issue_categories, options={})
       s = ''
       issue_category_tree(issue_categories) do |category, level|
@@ -24,9 +27,28 @@ module RedmineCategoryTree
         end
 
         tag_options.merge!(yield(category)) if block_given?
-        s << content_tag('option', name_prefix + h(category), tag_options)
+        s << tag.option(tag_options) do
+          name_prefix + h(category)
+        end
       end
       s.html_safe
+    end
+
+    def issue_category_tree_options_for_json(issue_categories, options={})
+      s = []
+      issue_category_tree(issue_categories) do |category, level|
+        if category.nil? || category.id.nil?
+          next
+        end
+
+        name_prefix = (level > 0 ? '|' + ("|-" * level) + '> ' : '')
+        if name_prefix.length > 0
+          name_prefix = name_prefix.slice(1, name_prefix.length)
+        end
+
+        s << [ name_prefix + category.to_s, category.id ]
+      end
+      ActiveSupport::JSON.encode(s)
     end
 
     def issue_category_tree(issue_categories, &block)
@@ -67,7 +89,7 @@ module RedmineCategoryTree
     end
     
     def render_issue_category_tree_context_menu_list(categories, includeOuterUL=false, &block)
-      categories = issue_category_tree(categories) { |cat, level| nil }
+      categories = issue_category_tree(categories) { |cat, level| {} }
       return '' if categories.size == 0
       
       output = ''
@@ -87,13 +109,14 @@ module RedmineCategoryTree
             output << '<li class="category-tree-nofx"><ul>'
           end
         end
-        output << '<li>'
-        output << capture(cat, path.size - 1, &block)
-        output << '</li>'
+#
+        output << '<li>' + capture(cat, path.size - 1, &block) + '</li>'
       end
-      
-      output << '</ul></li>' * (path.length - 1)
+
+      output << '</ul></li>' * (path.length - 1) if path.length
+
       output << '</ul>' if includeOuterUL
+
       output.html_safe
     end
 
@@ -106,12 +129,12 @@ module RedmineCategoryTree
       if ancestors.any?
         s << '<ul id="issue_category_tree">'
         ancestors.each do |ancestor|
-          s << '<li>' + content_tag('span', h(ancestor.name)) + '<ul>'
+          s << '<li>' + tag.span(h(ancestor.name)) + '<ul>'
         end
         s << '<li>'
       end
 
-      s << content_tag('span', h(category.name), :class => 'issue_category')
+      s << tag.span(h(category.name), :class => 'issue_category')
 
       if ancestors.any?
         s << '</li></ul>' * (ancestors.size + 1)
@@ -127,14 +150,14 @@ module RedmineCategoryTree
       ancestors = category.root? ? [] : category.ancestors.all
       if ancestors.any?
         ancestors.each do |ancestor|
-          s << content_tag('span', h(ancestor.name), :class => 'parent')
+          s << tag.span(h(ancestor.name), :class => 'parent')
         end
       end
 
-      s << content_tag('span', h(category.name), :class => 'issue_category')
+      s << tag.span(h(category.name), :class => 'issue_category')
       
       if ancestors.any?
-        s = content_tag('span', s, { :class => 'issue_category_tree' }, false)
+        s = tag.span(s, :class => 'issue_category_tree')
       end
       s.html_safe
     end

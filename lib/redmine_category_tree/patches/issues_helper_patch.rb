@@ -1,31 +1,30 @@
 module RedmineCategoryTree
 	module Patches
 		module IssuesHelperPatch
-			def self.included(base)
+			def self.prepended(base)
 				base.class_eval do
-				  unloadable
 				  include RedmineCategoryTree::IssueCategoryHelper
-					base.prepend(FindNameByReflectionPatch)
 				end
 			end
-		end
-		module FindNameByReflectionPatch
+
 			def find_name_by_reflection(field, id)
 				unless id.present?
 					return nil
 				end
 				if field == 'category'
-					association = Issue.reflect_on_association(field.to_sym)
-					if association
-						record = association.class_name.constantize.find_by_id(id)
-						if record
-							return render_issue_category_with_tree_inline(record)
+					@detail_value_name_by_reflection ||= Hash.new do |hash, key|
+						association = Issue.reflect_on_association(field.to_sym)
+						if association
+							record = association.klass.find_by_id(id)
+							if record
+								Rails.logger.info "  - Yes, generating tree inline"
+								hash[key] = render_issue_category_with_tree_inline(record).force_encoding('UTF-8')
+							end
 						end
-					else
-						return super(field, id)
 					end
+					super(field, id) unless @detail_value_name_by_reflection[[field, id]]
 				else
-					return super(field, id)
+					super(field, id)
 				end
 			end
 		end

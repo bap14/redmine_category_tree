@@ -3,21 +3,10 @@ require File.dirname(__FILE__) + '/../../../app/views/helpers/redmine_category_t
 module RedmineCategoryTree
 	module Patches
 		module ProjectsControllerPatch
-			def self.included(base) # :nodoc:
-				base.extend(ClassMethods)
-				base.send(:include, InstanceMethods)
-
+			def self.prepended(base) # :nodoc:
 				base.class_eval do
-					unloadable
-
 					helper RedmineCategoryTree::IssueCategoryHelper
 				end
-			end
-
-			module ClassMethods
-			end
-
-			module InstanceMethods
 			end
 		end
 	end

@@ -26,8 +26,8 @@
   <% end %>
 
   <div class="gravatar-with-child">
-    <%= avatar(@issue.author, :size => "50") %>
-    <%= avatar(@issue.assigned_to, :size => "22", :class => "gravatar gravatar-child") if @issue.assigned_to %>
+    <%= avatar(@issue.author, :size => "50", :title => l(:field_author)) %>
+    <%= avatar(@issue.assigned_to, :size => "22", :class => "gravatar gravatar-child", :title => l(:field_assigned_to)) if @issue.assigned_to %>
   </div>
 
 <div class="subject">
@@ -49,7 +49,7 @@
     rows.left l(:field_assigned_to), (@issue.assigned_to ? link_to_user(@issue.assigned_to) : "-"), :class => 'assigned-to'
   end
   unless @issue.disabled_core_fields.include?('category_id') || (@issue.category.nil? && @issue.project.issue_categories.none?)
-    rows.left l(:field_category), (@issue.category ? @issue.category.name : "-"), :class => 'category'
+    rows.left l(:field_category), (@issue.category ? render_issue_category_with_tree(@issue.category) : "-"), :class => 'category'
   end
   unless @issue.disabled_core_fields.include?('fixed_version_id') || (@issue.fixed_version.nil? && @issue.assignable_versions.none?)
     rows.left l(:field_fixed_version), (@issue.fixed_version ? link_to_version(@issue.fixed_version) : "-"), :class => 'fixed-version'
@@ -75,12 +75,11 @@ end %>
 <%= call_hook(:view_issues_show_details_bottom, :issue => @issue) %>
 </div>
 
-<% if @issue.description? || @issue.attachments.any? -%>
-<hr />
 <% if @issue.description? %>
+<hr />
 <div class="description">
   <div class="contextual">
-  <%= link_to l(:button_quote), quoted_issue_path(@issue), :remote => true, :method => 'post', :class => 'icon icon-comment' if authorize_for('issues', 'edit') %>
+  <%= link_to l(:button_quote), quoted_issue_path(@issue), :remote => true, :method => 'post', :class => 'icon icon-comment' if @issue.notes_addable? %>
   </div>
 
   <p><strong><%=l(:field_description)%></strong></p>
@@ -89,8 +88,11 @@ end %>
   </div>
 </div>
 <% end %>
-<%= link_to_attachments @issue, :thumbnails => true %>
-<% end -%>
+<% if @issue.attachments.any? %>
+  <hr />
+  <p><strong><%=l(:label_attachment_plural)%></strong></p>
+  <%= link_to_attachments @issue, :thumbnails => true %>
+<% end %>
 
 <%= render_full_width_custom_fields_rows(@issue) %>
 
@@ -125,6 +127,8 @@ end %>
 </div>
 <% end %>
 
+<%= render partial: 'action_menu_edit' if User.current.wants_comments_in_reverse_order? %>
+
 <% if @journals.present? %>
 <div id="history">
 <h3><%=l(:label_history)%></h3>
@@ -132,17 +136,7 @@ end %>
 </div>
 <% end %>
 
-
-<div style="clear: both;"></div>
-<%= render :partial => 'action_menu' %>
-
-<div style="clear: both;"></div>
-<% if @issue.editable? %>
-  <div id="update" style="display:none;">
-  <h3><%= l(:button_edit) %></h3>
-  <%= render :partial => 'edit' %>
-  </div>
-<% end %>
+<%= render partial: 'action_menu_edit' unless User.current.wants_comments_in_reverse_order? %>
 
 <% other_formats_links do |f| %>
   <%= f.link_to 'Atom', :url => {:key => User.current.rss_key} %>
