@@ -11,7 +11,7 @@ module RedmineCategoryTree
         super
         add_available_filter "category_id",
            :type => :list_optional,
-           :values => lambda { issue_category_tree_options_for_json(project.issue_categories) } if project
+           :values => lambda { issue_category_tree_options_to_json(project.issue_categories) } if project
       end
     end
   end

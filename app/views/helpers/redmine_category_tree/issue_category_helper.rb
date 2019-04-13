@@ -35,6 +35,11 @@ module RedmineCategoryTree
     end
 
     def issue_category_tree_options_for_json(issue_categories, options={})
+      s = issue_category_tree_options_to_json(issue_categories, options)
+      ActiveSupport::JSON.encode(s)
+    end
+
+    def issue_category_tree_options_to_json(issue_categories, options={})
       s = []
       issue_category_tree(issue_categories) do |category, level|
         if category.nil? || category.id.nil?
@@ -46,9 +51,9 @@ module RedmineCategoryTree
           name_prefix = name_prefix.slice(1, name_prefix.length)
         end
 
-        s << [ name_prefix + category.to_s, category.id ]
+        s << [ name_prefix + category.name, category.id.to_s ]
       end
-      ActiveSupport::JSON.encode(s)
+      s
     end
 
     def issue_category_tree(issue_categories, &block)
