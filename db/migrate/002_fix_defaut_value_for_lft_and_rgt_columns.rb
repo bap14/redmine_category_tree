@@ -1,4 +1,4 @@
-class FixDefautValueForLftAndRgtColumns < ActiveRecord::Migration
+class FixDefautValueForLftAndRgtColumns < ActiveRecord::Migration[4.2]
   def self.up
     change_column :issue_categories, :lft, :integer, :null => false, :default => '0'
     change_column :issue_categories, :rgt, :integer, :null => false, :default => '0'

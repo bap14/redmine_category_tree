@@ -1,4 +1,4 @@
-class IssueCategoryActsAsNestedSet < ActiveRecord::Migration
+class IssueCategoryActsAsNestedSet < ActiveRecord::Migration[4.2]
 
   def self.up
     add_column :issue_categories, :parent_id, :integer, :null => true
