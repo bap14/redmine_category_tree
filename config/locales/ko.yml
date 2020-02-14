@@ -1,0 +1,8 @@
+ko:
+  label_issue_category_parent_id: "상위 카테고리"
+  issue_category_move_top: "맨 위로 이동"
+  issue_category_move_up: "위로 이동"
+  issue_category_move_down: "아래로 이동"
+  issue_category_move_bottom: "맨 아래로 이동"
+  issue_category_successful_move: "범주가 이동되었습니다"
+  issue_category_not_found: "일감 범주를 불러오지 못했습니다"
