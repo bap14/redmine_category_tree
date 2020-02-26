@@ -13,7 +13,7 @@ require 'redmine_category_tree/hooks/redmine_category_tree_hooks'
 require File.dirname(__FILE__) + '/app/views/helpers/redmine_category_tree/issue_category_helper.rb'
 
 Rails.configuration.to_prepare do
-#((Rails.version > "5")? ActiveSupport::Reloader : ActionDispatch::Callbacks).to_prepare do
+#((Rails.version > "5")? ActiveSupport::Reloader : ActionDispatch::Callbacks).to_prepare do 
 
   ## Helpers first
 	require_dependency 'application_helper'
