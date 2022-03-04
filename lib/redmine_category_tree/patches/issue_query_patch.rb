@@ -7,7 +7,7 @@ module RedmineCategoryTree
         end
       end
 
-      def initialize_available_filters
+      def initialize_available_filters_category_tree
         super
         add_available_filter "category_id",
            :type => :list_optional,
